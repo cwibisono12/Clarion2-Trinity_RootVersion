@@ -1,0 +1,13 @@
+g++ -c analysis.c `root-config --cflags --libs`
+g++ -c param.c `root-config --cflags --libs`
+g++ -c spec.c `root-config --cflags --libs`
+g++ -c pxi16reader.c `root-config --cflags --libs`
+g++ -c bangate.c `root-config --cflags --libs`
+g++ -c detmap.c `root-config --cflags --libs`
+g++ -c gagg.c `root-config --cflags --libs`
+g++ -c germanium.c `root-config --cflags --libs`
+g++ -c kinmat.c `root-config --cflags --libs`
+g++ -c main.c `root-config --cflags --libs`
+g++ -c write.c `root-config --cflags --libs`
+g++ -c to2root.c `root-config --cflags --libs` 
+g++ -c clariontree.c `root-config --cflags --libs`

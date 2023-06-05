@@ -125,15 +125,15 @@ int main(int argc, char **argv) {
   //Definition of Branch:
  Clarion->Branch("gaggmult",&gaggmult,"gaggmult/B");
  Clarion->Branch("gemult",&gemult,"gemult/B");
- Clarion->Branch("geid",geid,"geid[gmult]/S");
- Clarion->Branch("gaggid",gaggid,"gaggid[gaggvalid]/S");
- Clarion->Branch("peak",peak,"peak[gaggvalid]/I");
- Clarion->Branch("tail",tail,"tail[gaggvalid]/I");
- Clarion->Branch("traceint",traceint,"tail[gaggvalid]/I");
- Clarion->Branch("gaggtime",gaggtime,"gaggtime[gaggvalid]/I");
- Clarion->Branch("geenergy",geenergy,"geenergy[gmult]/I");
- Clarion->Branch("geedopp",geedopp,"geedopp[gmult]/I");
- Clarion->Branch("getime",getime,"getime[gmult]/I");
+ Clarion->Branch("geid",geid,"geid[gemult]/S");
+ Clarion->Branch("gaggid",gaggid,"gaggid[gaggmult]/S");
+ Clarion->Branch("peak",peak,"peak[gaggmult]/I");
+ Clarion->Branch("tail",tail,"tail[gaggmult]/I");
+ Clarion->Branch("traceint",traceint,"tail[gaggmult]/I");
+ Clarion->Branch("gaggtime",gaggtime,"gaggtime[gaggmult]/L");
+ Clarion->Branch("geenergy",geenergy,"geenergy[gemult]/I");
+ Clarion->Branch("geedopp",geedopp,"geedopp[gemult]/I");
+ Clarion->Branch("getime",getime,"getime[gemult]/L");
 //  std::vector<gdetectorsum> *geclean = new std::vector<gdetectorsum>();
 // Clarion->Branch("GammaEvents","std::vector<gdetectorsum>",&geclean);
 
@@ -636,6 +636,9 @@ to2root(gaggvalid, gmult, si, ge, Clarion);
   
   
   printf("\n\n\n\nWriting...\n");
+  e_raw->Write()
+  e_cal->Write()
+  Clarion->Write()
   fpto2root->Write();   
  
   fclose(fpr);
