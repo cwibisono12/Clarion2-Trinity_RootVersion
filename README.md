@@ -20,3 +20,11 @@ GAGGmult;GAGGID;GAGG-Time;GAGG-peak;GAGG-tail;GAGG-traceint
 
 The dafault sorting code from this software also generate 2D Histogram from raw channel and calibrated channel. The Y axis is ID and the X axis is channel. User can utilize object e_raw to calibrate Ge crystals. To check calibration, user can utilize object e_cal.
 
+
+#Running the Sort Code:
+./Clarion_root -up [time-ordered-file] [calibration file] [mapping file] [gagg_calibration_file] [banana gate file] [scaling factor for Doppler correction] [Doppler correction option] [reaction channel information] [output root file]
+
+#Example:
+./Clarion_root -up calEu152.evt.to cal_fsu.ca3 id_fsu_Jun9.map gagg_calib_proton.txt 2d_all_proton.txt 0.8 1 proton.txt calEu152.root
+
+All of necessary parameter can be found under param directory. Note that if we only have Germanium detector without GAGG, this sorting code still requires the charged particle parameter files though, they do not affect the output of TTree. If there are no charged particle detectors, the reading of gaggmult in TTree would be zero and no other branches related to GAGG will be generated.
