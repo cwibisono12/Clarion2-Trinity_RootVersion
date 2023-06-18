@@ -1,3 +1,6 @@
+//Write into ROOT TTree
+//C. Wibisono
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "global.h"

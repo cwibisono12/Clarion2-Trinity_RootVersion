@@ -14,8 +14,10 @@
 
 #include "TTree.h"
 #include "TFile.h"
-#include "clariontree.h"
+#include "TCutG.h"
 
+#include "clariontree.h"
+#include "gaggcut.h"
 
 struct subevent subevt[MAX_ID]={0};
 int sevtmult=0;
@@ -366,204 +368,40 @@ memset(line,0,LINE_LENGTH);
 fclose(fgagg);
 fclose(fparticle);
 }
-  
-  
-//===========================================================================
-//open banana gate file: \\C. W
-float banx,bany;
-int gaggid,gaggnmpts;
-FILE *fprbangate;
-char *p;
 
+//Open root cutg files: \\C.W
+if(argc >= 7){
+TFile *fcutg = new TFile(argv[6]); 
+cutg21 = (TCutG*)fcutg->Get("cutg21");
+cutg22 = (TCutG*)fcutg->Get("cutg22");
+cutg23 = (TCutG*)fcutg->Get("cutg23");
+cutg24 = (TCutG*)fcutg->Get("cutg24");
+cutg25 = (TCutG*)fcutg->Get("cutg25");
+cutg26 = (TCutG*)fcutg->Get("cutg26");
+cutg27 = (TCutG*)fcutg->Get("cutg27");
+cutg28 = (TCutG*)fcutg->Get("cutg28");
+cutg29 = (TCutG*)fcutg->Get("cutg29");
+cutg210 = (TCutG*)fcutg->Get("cutg210");
+cutg41 = (TCutG*)fcutg->Get("cutg41");
+cutg42 = (TCutG*)fcutg->Get("cutg42");
+cutg43 = (TCutG*)fcutg->Get("cutg43");
+cutg44 = (TCutG*)fcutg->Get("cutg44");
+cutg45 = (TCutG*)fcutg->Get("cutg45");
+cutg46 = (TCutG*)fcutg->Get("cutg46");
+cutg47 = (TCutG*)fcutg->Get("cutg47");
+cutg48 = (TCutG*)fcutg->Get("cutg48");
+cutg49 = (TCutG*)fcutg->Get("cutg49");
+cutg410 = (TCutG*)fcutg->Get("cutg410");
+cutg411 = (TCutG*)fcutg->Get("cutg411");
+cutg412 = (TCutG*)fcutg->Get("cutg412");
+cutg413 = (TCutG*)fcutg->Get("cutg413");
+cutg414 = (TCutG*)fcutg->Get("cutg414");
+cutg415 = (TCutG*)fcutg->Get("cutg415");
+cutg416 = (TCutG*)fcutg->Get("cutg416");
 
-int lg=0,g1=0,g2=0,g3=0,g4=0,g5=0,g6=0,g7=0,g8=0,g9=0,
-    g10=0,g11=0,g12=0,g13=0,g14=0,g15=0,g16=0,g17=0,
-    g18=0,g19=0,g20=0,g21=0,
-    g22=0,g23=0,g24=0,g25=0,g26=0;
-
-if (argc >= 7){
-if ((fprbangate = fopen(argv[6],"r")) == NULL){
-        fprintf(stderr, "Error, cannot open input file %s\n", argv[6]);
-        return 1;
-      }
-
-printf("%s loaded!\n", argv[6]);
-
-while (fgets(line,LINE_LENGTH,fprbangate) !=NULL){
-    if ( (p=strchr(line,'#')) != NULL){
-      sscanf(line,"%d\t%d",&gaggid,&gaggnmpts);
-      GID[lg]=gaggid;
-      GNMPTS[lg]=gaggnmpts;
-      lg++;
-      }
-    else{
-    sscanf(line,"%d\t%d\t%f\t%f\n",&gaggid,&gaggnmpts,&banx,&bany);
-    if (gaggid == GID[0] && gaggnmpts == GNMPTS[0]){
-        polyX21[g1]=banx;
-        polyY21[g1]=bany;
-      printf("%f %f\n",polyX21[g1],polyY21[g1]); 
-       g1++;
-        }
-    if (gaggid == GID[1] && gaggnmpts == GNMPTS[1]){
-        polyX22[g2]=banx;
-        polyY22[g2]=bany;
-      printf("%f %f\n",polyX22[g2],polyY22[g2]); 
-       g2++;
-         }
-    if (gaggid == GID[2] && gaggnmpts == GNMPTS[2]){
-        polyX23[g3]=banx;
-        polyY23[g3]=bany;
-       printf("%f %f\n",polyX23[g3],polyY23[g3]);
-        g3++;
-          }
-    if (gaggid == GID[3] && gaggnmpts == GNMPTS[3]){
-        polyX24[g4]=banx;
-        polyY24[g4]=bany;
-        printf("%f %f\n",polyX24[g4],polyY24[g4]);
-        g4++;
-          }
-    if (gaggid == GID[4] && gaggnmpts == GNMPTS[4]){
-        polyX25[g5]=banx;
-        polyY25[g5]=bany;
-        printf("%f %f\n",polyX25[g5],polyY25[g5]);
-        g5++;
-          }
-    if (gaggid == GID[5] && gaggnmpts == GNMPTS[5]){
-        polyX26[g6]=banx;
-        polyY26[g6]=bany;
-        printf("%f %f\n",polyX26[g6],polyY26[g6]);
-        g6++;
-          }
-    if (gaggid == GID[6] && gaggnmpts == GNMPTS[6]){
-        polyX27[g7]=banx;
-        polyY27[g7]=bany;
-        printf("%f %f\n",polyX27[g7],polyY27[g7]);
-        g7++;
-          }
-    if (gaggid == GID[7] && gaggnmpts == GNMPTS[7]){
-        polyX28[g8]=banx;
-        polyY28[g8]=bany;
-        printf("%f %f\n",polyX28[g8],polyY28[g8]);
-        g8++;
-          }
-    if (gaggid == GID[8] && gaggnmpts == GNMPTS[8]){
-        polyX29[g9]=banx;
-        polyY29[g9]=bany;
-        printf("%f %f\n",polyX29[g9],polyY29[g9]);
-        g9++;
-          }
-    if (gaggid == GID[9] && gaggnmpts == GNMPTS[9]){
-        polyX210[g10]=banx;
-        polyY210[g10]=bany;
-        printf("%f %f\n",polyX210[g10],polyY210[g10]);
-        g10++;
-          }
-    if (gaggid == GID[10] && gaggnmpts == GNMPTS[10]){
-        polyX41[g11]=banx;
-        polyY41[g11]=bany;
-        printf("%f %f\n",polyX41[g11],polyY41[g11]);
-        g11++;
-          }
-    if (gaggid == GID[11] && gaggnmpts == GNMPTS[11]){
-        polyX42[g12]=banx;
-        polyY42[g12]=bany;
-        printf("%f %f\n",polyX42[g12],polyY42[g12]);
-        g12++;
-          }
-    if (gaggid == GID[12] && gaggnmpts == GNMPTS[12]){
-        polyX43[g13]=banx;
-        polyY43[g13]=bany;
-        printf("%f %f\n",polyX43[g13],polyY43[g13]);
-        g13++;
-          }
-    if (gaggid == GID[13] && gaggnmpts == GNMPTS[13]){
-        polyX44[g14]=banx;
-        polyY44[g14]=bany;
-        printf("%f %f\n",polyX44[g14],polyY44[g14]);
-        g14++;
-          }
-    if (gaggid == GID[14] && gaggnmpts == GNMPTS[14]){
-        polyX45[g15]=banx;
-        polyY45[g15]=bany;
-        printf("%f %f\n",polyX45[g15],polyY45[g15]);
-        g15++;
-          }
-    if (gaggid == GID[15] && gaggnmpts == GNMPTS[15]){
-        polyX46[g16]=banx;
-        polyY46[g16]=bany;
-        printf("%f %f\n",polyX46[g16],polyY46[g16]);
-        g16++;
-          }
-    if (gaggid == GID[16] && gaggnmpts == GNMPTS[16]){
-        polyX47[g17]=banx;
-        polyY47[g17]=bany;
-        printf("%f %f\n",polyX47[g17],polyY47[g17]);
-        g17++;
-          }
-    if (gaggid == GID[17] && gaggnmpts == GNMPTS[17]){
-        polyX48[g18]=banx;
-        polyY48[g18]=bany;
-        printf("%f %f\n",polyX48[g18],polyY48[g18]);
-        g18++;
-          }
-    if (gaggid == GID[18] && gaggnmpts == GNMPTS[18]){
-        polyX49[g19]=banx;
-        polyY49[g19]=bany;
-        printf("%f %f\n",polyX49[g19],polyY49[g19]);
-        g19++;
-          }
-    if (gaggid == GID[19] && gaggnmpts == GNMPTS[19]){
-        polyX410[g20]=banx;
-        polyY410[g20]=bany;
-        printf("%f %f\n",polyX410[g20],polyY410[g20]);
-        g20++;
-          }
-    if (gaggid == GID[20] && gaggnmpts == GNMPTS[20]){
-        polyX411[g21]=banx;
-        polyY411[g21]=bany;
-        printf("%f %f\n",polyX411[g21],polyY411[g21]);
-        g21++;
-          }
-    if (gaggid == GID[21] && gaggnmpts == GNMPTS[21]){
-        polyX412[g22]=banx;
-        polyY412[g22]=bany;
-        printf("%f %f\n",polyX412[g22],polyY412[g22]);
-        g22++;
-          }          
-    if (gaggid == GID[22] && gaggnmpts == GNMPTS[22]){
-        polyX413[g23]=banx;
-        polyY413[g23]=bany;
-        printf("%f %f\n",polyX413[g23],polyY413[g23]);
-        g23++;
-          }
-    if (gaggid == GID[23] && gaggnmpts == GNMPTS[23]){
-        polyX414[g24]=banx;
-        polyY414[g24]=bany;
-        printf("%f %f\n",polyX414[g24],polyY414[g24]);
-        g24++;
-          }
-    if (gaggid == GID[24] && gaggnmpts == GNMPTS[24]){
-        polyX415[g25]=banx;
-        polyY415[g25]=bany;
-        printf("%f %f\n",polyX415[g25],polyY415[g25]);
-        g25++;
-          }
-    if (gaggid == GID[25] && gaggnmpts == GNMPTS[25]){
-        polyX416[g26]=banx;
-        polyY416[g26]=bany;
-        printf("%f %f\n",polyX416[g26],polyY416[g26]);
-        g26++;
-          }
-     }
-memset(line,0,LINE_LENGTH);
-}//end while
-
-fclose(fprbangate);
-
-}//end argc >=7
-
-
-
+fcutg->Close();
+}
+//=============================================//
   
   /////////////////////
   // MAIN WHILE LOOP //
@@ -636,10 +474,10 @@ to2root(gaggvalid, gmult, si, ge, Clarion);
   
   
   printf("\n\n\n\nWriting...\n");
-  e_raw->Write()
-  e_cal->Write()
-  Clarion->Write()
-  fpto2root->Write();   
+  fpto2root->cd();
+  e_raw->Write();
+  e_cal->Write();
+  Clarion->Write();
  
   fclose(fpr);
   fclose(debugfile);
