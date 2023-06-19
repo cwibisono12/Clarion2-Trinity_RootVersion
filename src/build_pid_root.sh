@@ -1,0 +1,11 @@
+g++ -c analysis.c `root-config --cflags --libs`
+g++ -c param.c `root-config --cflags --libs`
+g++ -c spec.c `root-config --cflags --libs`
+g++ -c pxi16reader.c `root-config --cflags --libs`
+g++ -c detmap.c `root-config --cflags --libs`
+g++ -c gaggpid.c `root-config --cflags --libs`
+g++ -c germanium.c `root-config --cflags --libs`
+g++ -c kinmat.c `root-config --cflags --libs`
+g++ -c main_pid.c `root-config --cflags --libs`
+g++ -c gaggpid_dec.c `root-config --cflags --libs`
+g++ -c gaggcut.c `root-config --cflags --libs`
