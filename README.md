@@ -28,3 +28,11 @@ The dafault sorting code from this software also generate 2D Histogram from raw 
 ./Clarion_root -up calEu152.evt.to cal_fsu.ca3 id_fsu_Jun9.map gagg_calib_proton.txt 2d_all_proton.txt 0.8 1 proton.txt calEu152.root
 
 All of necessary parameter can be found under param directory. Note that if we only have Germanium detector without GAGG, this sorting code still requires the charged particle parameter files though, they do not affect the output of TTree. If there are no charged particle detectors, the reading of gaggmult in TTree would be zero and no other branches related to GAGG will be generated.
+
+
+#Added Support for NSCLDAQ data format:
+This repository also supports the data format generated from the NSCLDAQ which have been event-built. Directory is located at src/nscl/. The output would be in forms of TTree where the structure of TTree can be found at src/nscl/pxitree.h
+
+After compiling and linking (1.build_evtnsclroot.sh 2.link_evtnsclroot.sh) the program can be run via:
+
+./pixie16nscl_root .evtfile .rootfile 

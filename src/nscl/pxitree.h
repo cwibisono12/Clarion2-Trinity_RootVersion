@@ -1,0 +1,18 @@
+extern int mult;
+extern char chn[];
+extern char sln[];
+extern char crn[];
+extern int id[];
+extern int hlen[];
+extern int elen[];
+extern int trlen[];
+extern int trwlen[];
+extern int fcode[];
+extern long long int pxitime[];
+extern int cfdtime[];
+extern int cfdtimef[];
+extern int energy[];
+extern int extra[];
+//extern short tr[][4096];
+//extern int esum[][4];
+extern int qsum[][4];
