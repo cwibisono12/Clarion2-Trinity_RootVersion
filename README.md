@@ -29,15 +29,6 @@ The default sorting code from this software also generate 2D Histogram from raw 
 
 All of necessary parameter can be found under param directory. Note that if we only have Germanium detector without GAGG, this sorting code still requires the charged particle parameter files though, they do not affect the output of TTree. If there are no charged particle detectors, the reading of gaggmult in TTree would be zero and no other branches related to GAGG will be generated.
 
-<<<<<<< HEAD
-
-#Added Support for NSCLDAQ data format:
-This repository also supports the data format generated from the NSCLDAQ which have been event-built. Directory is located at src/nscl/. The output would be in forms of TTree where the structure of TTree can be found at src/nscl/pxitree.h
-
-After compiling and linking (1.build_evtnsclroot.sh 2.link_evtnsclroot.sh) the program can be run via:
-
-./pixie16nscl_root .evtfile .rootfile 
-=======
 #Generating GAGG-PID and making particle cuts file for channel selection:
 
 PIDs for GAGG are created separately. Gamma gate condition can also be made to give more restrictive requirement so that the separation between charged particles are more distinct.  
@@ -57,4 +48,12 @@ The procedure for running the program is the same except that now the executable
 ./clarion_pid_root -up data.evt.to cal_fsu.ca3 id_fsu_Jun9.map gagg_calib_proton.txt protoncutex.root 0.8 1 proton.txt gamgatefile.txt out.root
 
 All of GAGG PIDs will be stored on out.root file. Cuts can be made by calling each of objects inside out.root via ROOT Graphics editor by using View->Toolbar->Cut and store and rename each cut objects for each PIDs to a file according to naming condition as mentioned.
->>>>>>> 57e142e048c120bda2ee99399706e8625d555ea1
+
+
+
+#Added Support for NSCLDAQ data format:
+This repository also supports the data format generated from the NSCLDAQ which have been event-built. Directory is located at src/nscl/. The output would be in forms of TTree where the structure of TTree can be found at src/nscl/pxitree.h
+
+After compiling and linking (1.build_evtnsclroot.sh 2.link_evtnsclroot.sh) the program can be run via:
+
+./pixie16nscl_root .evtfile .rootfile 
