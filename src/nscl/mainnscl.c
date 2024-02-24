@@ -33,7 +33,7 @@ Pixie16->Branch("energy",energy,"energy[mult]/I");
 Pixie16->Branch("extra",extra,"extra[mult]/I");
 //Pixie16->Branch("tr",tr,"tr[mult][4096]/S");
 //Pixie16->Branch("esum",esum,"esum[mult][4]/I");
-Pixie16->Branch("qsum",qsum,"qsum[mult][8]/I");
+//Pixie16->Branch("qsum",qsum,"qsum[mult][8]/I");
 
 
 

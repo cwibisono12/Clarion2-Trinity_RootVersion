@@ -104,6 +104,7 @@ void evtreader(unsigned int sub[], struct subevent *subevt, FILE *fpr, TTree *Pi
 
 
        	//printf("id: %d hlen: %d elen: %d\n",subevt->id,subevt->hlen,subevt->elen); 
+	/*
 	if(subevt[ind].trlen != 0){
 	int l,m;
 	for(m=0;m<8;m++){
@@ -134,7 +135,9 @@ void evtreader(unsigned int sub[], struct subevent *subevt, FILE *fpr, TTree *Pi
 	subevt[ind].qsum[7]=subevt[ind].qsum[7]+subevt[ind].tr[l];
 	}
 	}
-     // if (subevt[sevtmult].id == 4 && subevt[sevtmult].fcode == 1) DB(subevt[sevtmult].tr);
+     
+	*/
+	// if (subevt[sevtmult].id == 4 && subevt[sevtmult].fcode == 1) DB(subevt[sevtmult].tr);
             
         //continue if no esum or qsum   
         if (subevt[ind].hlen==HEADER_LENGTH) {

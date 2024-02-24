@@ -15,4 +15,4 @@ int energy[416];
 int extra[416];
 //short tr[416][4096];
 //int esum[416][4];
-int qsum[416][8];
+//int qsum[416][8];

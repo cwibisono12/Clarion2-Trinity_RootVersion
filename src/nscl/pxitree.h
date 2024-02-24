@@ -15,4 +15,4 @@ extern int energy[];
 extern int extra[];
 //extern short tr[][4096];
 //extern int esum[][4];
-extern int qsum[][4];
+//extern int qsum[][4];
