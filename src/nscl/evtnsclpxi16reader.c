@@ -5,12 +5,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "evtnscl.h"
+#include "TH2.h"
+#include "TObject.h"
 #include "TTree.h"
 #include "pxitree.h"
 
+#define TRUE 1
+#define FALSE 0
+
 void evtreader(unsigned int sub[], struct subevent *subevt, FILE *fpr, TTree *Pixie16){
       int i=0,j=0,k=0;
+      int cfdtimetemp;
       int rihsize=0;
       int rihtype=0;
       int ribhsize=0;
@@ -18,6 +25,8 @@ void evtreader(unsigned int sub[], struct subevent *subevt, FILE *fpr, TTree *Pi
       int ribhsid=0;
       int ribhbt=0;
       int ribhbsize=0;
+      bool cfd_forced;
+      bool cfd_source; 
       struct fragment{
 	long long int frtmp;
 	int sid;
@@ -54,7 +63,7 @@ void evtreader(unsigned int sub[], struct subevent *subevt, FILE *fpr, TTree *Pi
 	temporary=temporary-(48+2*frag[ind].bsize);
 	
 	
-	
+//	memset(&subevt,0,sizeof(subevt));
 	//read 4-byte header
         if (fread(sub, sizeof(int)*HEADER_LENGTH, 1, fpr) != 1) break;
         subevt[ind].chn = sub[0] & 0xF;
@@ -65,19 +74,24 @@ void evtreader(unsigned int sub[], struct subevent *subevt, FILE *fpr, TTree *Pi
         subevt[ind].elen = (sub[0] & 0x7FFE0000) >> 17;
         subevt[ind].fcode = (sub[0] & 0x80000000) >> 31;
         subevt[ind].time = ( (long long int)(sub[2] & 0xFFFF) << 32) + sub[1];
-        subevt[ind].ctime = (sub[2] & 0x7FFF0000) >> 16;
+        //subevt[ind].ctime = (sub[2] & 0x7FFF0000) >> 16;
+        cfdtimetemp = sub[2] >> 16 & 0x3FFF;
         subevt[ind].ctimef = (sub[2] & 0x80000000) >> 31;
-        subevt[ind].energy = (sub[3] & 0xFFFF);
+        cfd_forced = sub[2] >> 16 & 0x8000;
+	cfd_source = sub[2] >> 16 & 0x4000;
+	//subevt[ind].ctime = cfd_forced == 0 ? (cfdtimetemp - 16384*(cfd_source == 1 ? 1:0))/2 : 0;
+	subevt[ind].ctime = (sub[2] & 0x7FFF0000) >> 16;
+	subevt[ind].energy = (sub[3] & 0xFFFF);
         subevt[ind].trlen = (sub[3] & 0x7FFF0000) >> 16;
         subevt[ind].trwlen = subevt[ind].trlen / 2;
         subevt[ind].extra = (sub[3] & 0x80000000) >> 31;       
  
- 	/*       
+ 	      
 	float temp;
 	temp=(float) subevt[ind].energy/2.;
 	subevt[ind].energy=(int) temp;
-	*/
 	
+	e_cal->Fill(subevt[ind].energy,subevt[ind].id);
 	//if(subevt->trlen ==0){        
 	//printf("chn: %d crn: %d sln: %d id: %d hlen: %d elen: %d energy: %d trlen: %d ribhold: %d ribh: %d fragsize: %d flagb: %d\n",subevt->chn,subevt->crn,subevt->sln,subevt->id,subevt->hlen,subevt->elen,subevt->energy,subevt->trlen,rib_sizeold,rib_size,frag_size,flagb);
 	//Comment as of 01/27 '24 C.W 

@@ -16,11 +16,11 @@ hlen[i]=subevt[i].hlen;
 elen[i]=subevt[i].elen;
 trlen[i]=subevt[i].trlen;
 trwlen[i]=subevt[i].trwlen;
+energy[i]=subevt[i].energy;
 fcode[i]=subevt[i].fcode;
 pxitime[i]=subevt[i].time;
 cfdtime[i]=subevt[i].ctime;
 cfdtimef[i]=subevt[i].ctimef;
-energy[i]=subevt[i].energy;
 extra[i]=subevt[i].extra;
 //	if(hlen[i]==4 && trlen[i]==0) continue;
 	/*

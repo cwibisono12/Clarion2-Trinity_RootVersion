@@ -22,9 +22,9 @@ struct subevent
     int trwlen;         //number of words (two samples per word)
     int fcode;          //pileup flag
     long long int time;
-    int ctime;
-    int ctimef;
-    int energy;
+    unsigned int ctime;
+    char ctimef;
+    unsigned int energy;
     int extra;
     short tr[4096];
     int esum[4];
