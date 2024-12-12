@@ -5,23 +5,25 @@
 
 void evt2root(int len, struct subevent *subevt,TTree *Pixie16){
 int i,j,k;
-mult=len;
+
+j=0;
 for(i=0;i<len;i++){
 if(subevt[i].crn !=1) continue;
-chn[i]=subevt[i].chn;
-sln[i]=subevt[i].sln;
-crn[i]=subevt[i].crn;
-id[i]=subevt[i].id;
-hlen[i]=subevt[i].hlen;
-elen[i]=subevt[i].elen;
-trlen[i]=subevt[i].trlen;
-trwlen[i]=subevt[i].trwlen;
-energy[i]=subevt[i].energy;
-fcode[i]=subevt[i].fcode;
-pxitime[i]=subevt[i].time;
-cfdtime[i]=subevt[i].ctime;
-cfdtimef[i]=subevt[i].ctimef;
-extra[i]=subevt[i].extra;
+chn[j]=subevt[i].chn;
+sln[j]=subevt[i].sln;
+crn[j]=subevt[i].crn;
+id[j]=subevt[i].id;
+hlen[j]=subevt[i].hlen;
+elen[j]=subevt[i].elen;
+trlen[j]=subevt[i].trlen;
+trwlen[j]=subevt[i].trwlen;
+energy[j]=subevt[i].energy;
+fcode[j]=subevt[i].fcode;
+pxitime[j]=subevt[i].time;
+cfdtime[j]=subevt[i].ctime;
+cfdtimef[j]=subevt[i].ctimef;
+extra[j]=subevt[i].extra;
+j=j+1;
 //	if(hlen[i]==4 && trlen[i]==0) continue;
 	/*
 	k=0;
@@ -44,6 +46,8 @@ extra[i]=subevt[i].extra;
 		}
 	}
 	*/
+}
+mult = j;
 	Pixie16->Fill();	
-	}
+	
 }
